@@ -10,24 +10,29 @@
 	<script>
 		function secondHighest(arr) {
 			//Write your code here
-			let largestNumber=arr[0];
-			let secondLargestNumber=arr[0];
+			 if (arr.length < 2) {
+    return "There is no second-highest element in the array.";
+  }
 
-			for(let i=0;i<arr.length;i++){
-				if(arr[i]>largestNumber){
-					secondLargestNumber=largestNumber;
-					largestNumber =arr[i];
-				}
-				else if(arr[i]>secondLargestNumber){
-					secondLargestNumber=arr[i];
-				}
-					
-				}
-			return secondLargestNumber;
-			}
-			
-			
-		}
+  let highest = arr[0];
+  let secondHighest = arr[1];
+
+  if (secondHighest > highest) {
+    [highest, secondHighest] = [secondHighest, highest];
+  }
+
+  for (let i = 2; i < arr.length; i++) {
+    if (arr[i] > highest) {
+      secondHighest = highest;
+      highest = arr[i];
+    } else if (arr[i] > secondHighest && arr[i] !== highest) {
+      secondHighest = arr[i];
+    }
+  }
+
+  return secondHighest;
+}		
+		
 
 		function Main() {
 			var n = prompt("Enter the number of elements");
